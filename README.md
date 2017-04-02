@@ -79,8 +79,9 @@ Commands:
   !destiny     sets and manages the destiny balance for the group
   !crit        rolls a d100 with optional modifier and displays result of the critical hit
   !shipcrit    rolls a d100 with optional modifier and displays result of the ship critical hit
-  !char        simple character stat manager.)
-  !help        displays help for topics.)
+  !char        simple character stat manager.
+  !help        displays help for topics.
+  !ver         displays bot version
 
 
 #Installation and Setup
