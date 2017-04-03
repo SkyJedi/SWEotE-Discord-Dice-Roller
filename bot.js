@@ -7,7 +7,7 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 var chalk = require("chalk");
 const bot = new Discord.Client();
-var print = require("./printValues.json");
+var print = require("./printValues.js");
 
 
 bot.login(config.token);
@@ -116,6 +116,11 @@ bot.on("message", message => {
 
 //************************COMMANDS START HERE************************
 
+//test command
+if (message.content.toLowerCase().startsWith(config.prefix + "test")) {
+  var emoji = print("adv", message);
+  message.channel.sendMessage(emoji);
+}
 //Ver command
 if (message.content.toLowerCase().startsWith(config.prefix + "ver")) {
   message.channel.sendMessage(bot.user.username + ": version: " + version);
@@ -129,34 +134,34 @@ if (message.content.toLowerCase().startsWith(config.prefix + "d100")) {
 if (message.content.toLowerCase().startsWith(config.prefix + "crit")) {
   var total = d100(params, message);
 	var crit  = {
-  	option1: print.pb + "Minor Nick: The target suffers 1 strain.",
-  	option2: print.pb + "Slowed Down: The target can only act during the last allied Initiative slot on his next turn.",
-  	option3: print.pb + "Sudden Jolt: The target drops whatever is in hand.",
-  	option4: print.pb + "Distracted: The target cannot perform a free maneuver during his next turn.",
-  	option5: print.pb + "Off-Balance. Add " + print.blkb + " to his next skill check.",
-  	option6: print.pb + "Discouraging Wound: Flip one light side Destiny point to a dark side Destiny Point (reverse if NPC).",
-  	option7: print.pb + "Stunned: The target is staggered until the end of his next turn.",
-  	option8: print.pb + "Stinger: Increase difficulty of next check by one.",
-  	option9: print.pb + print.pb + "Bowled Over: The target is knocked prone and suffers 1 strain.",
-  	option10: print.pb + print.pb + "Head Ringer: The target increases the difficulty of all Intellect and Cunning Checks by one until the end of the encounter.",
-  	option11: print.pb + print.pb + "Fearsome Wound: The target increases the difficulty of all Presence and Willpower checks by one until the end of the encounter.",
-  	option12: print.pb + print.pb + "Agonizing Wound: The target increases the difficulty of all Brawn and Agility checks by one until the end of the encounter.",
-  	option13: print.pb + print.pb + "Slightly Dazed: The target is disoriented until the end of the encounter.",
-  	option14: print.pb + print.pb + "Scattered Senses: The target removes all " + print.bb + " from skill checks until end of encounter.",
-  	option15: print.pb + print.pb + "Hamstrung: The target loses his free maneuver until the end of the encounter.",
-  	option16: print.pb + print.pb + "Overpowered: The target leaves himself open, and the attacker may immediately attempt another free attack against him, using the exact same pool as the original attack.",
-  	option17: print.pb + print.pb + "Winded: Until the end of the encounter, the target cannot voluntarily suffer strain to activate any abilities or gain additional maneuvers.",
-  	option18: print.pb + print.pb + "Compromised: Increase difficulty of all skill checks by one until the end of the encounter.",
-  	option19: print.pb + print.pb + print.pb + "At the Brink: The target suffers 1 strain each time he performs an action.",
-  	option20: print.pb + print.pb + print.pb + "Crippled: One of the target’s limbs (selected by the GM) is crippled until healed or replaced. Increase difficulty of all checks that require use of that limb by one.",
-  	option21: print.pb + print.pb + print.pb + "Maimed: One of the target’s limbs (selected by the GM) is permanently lost. Unless the target has a cybernetic replacement, the target cannot perform actions that would require the use of that limb. All other actions gain " + print.blkb + ".",
-  	option22: print.pb + print.pb + print.pb + "Horrific Injury. Randomly roll 1d100 to determine one of the target's characteristics—1-30 for Brawn, 31-60 for Agility, 61-70 for Intellect, 71-80 for Cunning, 81-90 for Presence, 91-100 for Willpower. Until this Critical Injury is healed, treat that characteristic as one point lower.",
-  	option23: print.pb + print.pb + print.pb + "Temporarily Lame: Until this Critical Injury is healed, the target cannot perform more than one maneuver during his turn.",
-  	option24: print.pb + print.pb + print.pb + "Blinded: The target can no longer see. Upgrade the difficulty of all checks twice. Upgrade the difficulty of Perception and Vigilance checks three times.",
-  	option25: print.pb + print.pb + print.pb + "Knocked Senseless: The target is staggered for the remainder of the encounter.",
-  	option26: print.pb + print.pb + print.pb + print.pb + "Gruesome Injury. Randomly roll 1d100 to determine one of the target's characteristics—1-30 for Brawn, 31-60 for Agility, 61-70 for Intellect, 71-80 for Cunning, 81-90 for Presence, 91-100 for Willpower. That characteristic is permanently reduced by one, to a minimum of one.",
-  	option27: print.pb + print.pb + print.pb + print.pb + "Bleeding Out: Every round, the target suffers 1 wound and 1 strain at the beginning of his turn. For every five wounds he suffers beyond his wound threshold, he suffers one additional Critical Injury. Roll on the chart, suffering the injury (if he suffers this result a second time due to this, roll again).",
-  	option28: print.pb + print.pb + print.pb + print.pb + "The End is Nigh: The target will die after the last Initiative slot during the next round.",
+  	option1: print("pb", message) + "Minor Nick: The target suffers 1 strain.",
+  	option2: print("pb", message) + "Slowed Down: The target can only act during the last allied Initiative slot on his next turn.",
+  	option3: print("pb", message) + "Sudden Jolt: The target drops whatever is in hand.",
+  	option4: print("pb", message) + "Distracted: The target cannot perform a free maneuver during his next turn.",
+  	option5: print("pb", message) + "Off-Balance. Add " + print("blkb", message) + " to his next skill check.",
+  	option6: print("pb", message) + "Discouraging Wound: Flip one light side Destiny point to a dark side Destiny Point (reverse if NPC).",
+  	option7: print("pb", message) + "Stunned: The target is staggered until the end of his next turn.",
+  	option8: print("pb", message) + "Stinger: Increase difficulty of next check by one.",
+  	option9: print("pb", message) + print("pb", message) + "Bowled Over: The target is knocked prone and suffers 1 strain.",
+  	option10: print("pb", message) + print("pb", message) + "Head Ringer: The target increases the difficulty of all Intellect and Cunning Checks by one until the end of the encounter.",
+  	option11: print("pb", message) + print("pb", message) + "Fearsome Wound: The target increases the difficulty of all Presence and Willpower checks by one until the end of the encounter.",
+  	option12: print("pb", message) + print("pb", message) + "Agonizing Wound: The target increases the difficulty of all Brawn and Agility checks by one until the end of the encounter.",
+  	option13: print("pb", message) + print("pb", message) + "Slightly Dazed: The target is disoriented until the end of the encounter.",
+  	option14: print("pb", message) + print("pb", message) + "Scattered Senses: The target removes all " + print("bb", message) + " from skill checks until end of encounter.",
+  	option15: print("pb", message) + print("pb", message) + "Hamstrung: The target loses his free maneuver until the end of the encounter.",
+  	option16: print("pb", message) + print("pb", message) + "Overpowered: The target leaves himself open, and the attacker may immediately attempt another free attack against him, using the exact same pool as the original attack.",
+  	option17: print("pb", message) + print("pb", message) + "Winded: Until the end of the encounter, the target cannot voluntarily suffer strain to activate any abilities or gain additional maneuvers.",
+  	option18: print("pb", message) + print("pb", message) + "Compromised: Increase difficulty of all skill checks by one until the end of the encounter.",
+  	option19: print("pb", message) + print("pb", message) + print("pb", message) + "At the Brink: The target suffers 1 strain each time he performs an action.",
+  	option20: print("pb", message) + print("pb", message) + print("pb", message) + "Crippled: One of the target’s limbs (selected by the GM) is crippled until healed or replaced. Increase difficulty of all checks that require use of that limb by one.",
+  	option21: print("pb", message) + print("pb", message) + print("pb", message) + "Maimed: One of the target’s limbs (selected by the GM) is permanently lost. Unless the target has a cybernetic replacement, the target cannot perform actions that would require the use of that limb. All other actions gain " + print("blkb", message) + ".",
+  	option22: print("pb", message) + print("pb", message) + print("pb", message) + "Horrific Injury. Randomly roll 1d100 to determine one of the target's characteristics—1-30 for Brawn, 31-60 for Agility, 61-70 for Intellect, 71-80 for Cunning, 81-90 for Presence, 91-100 for Willpower. Until this Critical Injury is healed, treat that characteristic as one point lower.",
+  	option23: print("pb", message) + print("pb", message) + print("pb", message) + "Temporarily Lame: Until this Critical Injury is healed, the target cannot perform more than one maneuver during his turn.",
+  	option24: print("pb", message) + print("pb", message) + print("pb", message) + "Blinded: The target can no longer see. Upgrade the difficulty of all checks twice. Upgrade the difficulty of Perception and Vigilance checks three times.",
+  	option25: print("pb", message) + print("pb", message) + print("pb", message) + "Knocked Senseless: The target is staggered for the remainder of the encounter.",
+  	option26: print("pb", message) + print("pb", message) + print("pb", message) + print("pb", message) + "Gruesome Injury. Randomly roll 1d100 to determine one of the target's characteristics—1-30 for Brawn, 31-60 for Agility, 61-70 for Intellect, 71-80 for Cunning, 81-90 for Presence, 91-100 for Willpower. That characteristic is permanently reduced by one, to a minimum of one.",
+  	option27: print("pb", message) + print("pb", message) + print("pb", message) + print("pb", message) + "Bleeding Out: Every round, the target suffers 1 wound and 1 strain at the beginning of his turn. For every five wounds he suffers beyond his wound threshold, he suffers one additional Critical Injury. Roll on the chart, suffering the injury (if he suffers this result a second time due to this, roll again).",
+  	option28: print("pb", message) + print("pb", message) + print("pb", message) + print("pb", message) + "The End is Nigh: The target will die after the last Initiative slot during the next round.",
   	option29: "Dead: Complete, obliterated death."
   };
 
@@ -260,24 +265,24 @@ if (message.content.toLowerCase().startsWith(config.prefix + "crit")) {
 if (message.content.toLowerCase().startsWith(config.prefix + "shipcrit")) {
   var total = d100(params, message);
 	var crit  = {
-      option1: print.pb + "Mechanical Stress: The ship or vehicle suffers one point of system strain.",
-      option2: print.pb + "Jostled: A small explosion or impact rocks the vehicle. All crew members suffer one strain and are disoriented for one round.",
-      option3: print.pb + "Losing Power to Shields: Decrease defense in affected defense zone by one until the Critical Hit is repaired. If the ship or vehicle has no defense, suffer one point of system strain.",
-      option4: print.pb + "Knocked Off Course: A particularly strong blast or impact sends the ship or vehicle careening off in a new direction. On his next turn, the pilot cannot execute any maneuvers and must make a Piloting check to regain control. The difficulty of this check depends on his current speed.",
-      option5: print.pb + "Tailspin: All firing from the ship or vehicle suffers " + print.blkb + print.blkb + " dice until the end of the pilot’s next turn. All crewmembers are immobilized until the end of the pilot’s next turn.",
-      option6: print.pb + "Component Hit: One component of the attacker’s choice is knocked offline, and is rendered inoperable until the end of the following round. For a list of ship components, see EotE Core Rulebook Table 7-10: Small Ship or Vehicle Components or Table 7-11: Large Ship or Vehicle Components depending on target ship silhouette.",
-      option7: print.pb + print.pb + "Shields Failing: Reduce defense in all defense zones by one point until the Critical Hit is repaired. If the ship or vehicle has no defense, suffer two points of system strain.",
-      option8: print.pb + print.pb + "Navicomputer Failure: The navicomputer (or in the case of a ship without a navicomputer, its R2 unit) fails and the ship cannot make the jump to hyperspace until the Critical Hit is repaired. If the ship or vehicle is without a hyperdrive, the vehicle or ship’s navigation systems fail, leaving it flying or driving blind, unable to tell where it is or where it’s going.",
-      option9: print.pb + print.pb + "Power Fluctuations: The ship or vehicle is beset by random power surges and outages. The pilot cannot voluntarily inflict system strain on the ship (to gain an extra starship maneuver, for example), until this Critical Hit is repaired.",
-      option10: print.pb + print.pb + print.pb + "Shields Down: Decrease defense in affected defense zone to zero, and decrease defense in all other defense zones by one until this Critical Hit is repaired. While the defense of the affected defense zone cannot be restored until the Critical Hit is repaired, defense can be assigned to protect that defense zone from other zones as usual. If the ship or vehicle is without defense, suffer four points of system strain.",
-      option11: print.pb + print.pb + print.pb + "Engine Damaged: The ship or vehicle’s maximum speed is reduced by one point, to a minimum of one, until the Critical Hit is repaired.",
-      option12: print.pb + print.pb + print.pb + "Shield Overload: The ship’s shields completely fail. Decrease the defense of all defense zones to zero. This Critical Hit cannot be repaired until the end of the encounter, and the ship suffers two points of system strain. If the ship or vehicle is without defense, reduce armor by 1 until the Critical Hit is repaired.",
-      option13: print.pb + print.pb + print.pb + "Engines Down: The ship or vehicle’s maximum speed is reduced to zero until the Critical Hit is repaired, although it continues on its present course thanks to momentum. In addition, the ship cannot execute any maneuvers until the Critical Hit is repaired.",
-      option14: print.pb + print.pb + print.pb + "Major System Failure: One component of the attacker’s choice is heavily damaged, and is inoperable until the Critical Hit is repaired. For a list of ship components, see EotE Core Rulebook Table 7-10: Small Ship or Vehicle Components or Table 7-11: Large Ship or Vehicle Components depending on target ship silhouette.",
-      option15: print.pb + print.pb + print.pb + print.pb + "Major Hull Breach: A huge, gaping tear is torn in the ship’s hull and it depressurizes. For ships and vehicles of silhouette 4 and smaller, the entire ship depressurizes in a number of rounds equal to the ship’s silhouette. Ships and vehicles of silhouette 5 and larger tend to be highly compartmentalized and have many safeguards against depressurization. These ships don’t completely depressurize, but parts do (the specifics of which parts depressurize is up to the GM; however each section of the ship or vehicle that does lose air does so in a number of rounds equal to the vehicle’s silhouette). Vehicles and ships operating in an atmosphere can better handle this Critical Hit. However, the huge tear still inflicts penalties, causing the vehicle to suffer the Destabilized Critical Hit instead.",
-      option16: print.pb + print.pb + print.pb + print.pb + "Destabilized: The ship or vehicle’s structural integrity is seriously damaged. Reduce the ship or vehicle’s hull trauma threshold and system strain threshold to half their original values until repaired.",
-      option17: print.pb + print.pb + print.pb + print.pb + "Fire!: Fire rages through the ship. The ship or vehicle immediately takes two points of system strain, and anyone caught in the fire takes damage as discussed on page 214 of the EotE Core Rulebook. A fire can be put out with some quick thinking and appropriate skill, Vigilance and/or Cool checks at the Game Master’s discretion. Once going, a fire takes one round per two of the ship’s silhouette points to put out.",
-      option18: print.pb + print.pb + print.pb + print.pb + "Breaking Up: The vehicle or ship has suffered so much damage that it begins to come apart at its seams, breaking up and disintegrating around the crew. At the end of the following round, the ship is completely destroyed and the surrounding environment is littered with debris. Anyone aboard the ship or vehicle has one round to get to an escape pod, bail out, or dive for the nearest hatch before they are lost.",
+      option1: print("pb", message) + "Mechanical Stress: The ship or vehicle suffers one point of system strain.",
+      option2: print("pb", message) + "Jostled: A small explosion or impact rocks the vehicle. All crew members suffer one strain and are disoriented for one round.",
+      option3: print("pb", message) + "Losing Power to Shields: Decrease defense in affected defense zone by one until the Critical Hit is repaired. If the ship or vehicle has no defense, suffer one point of system strain.",
+      option4: print("pb", message) + "Knocked Off Course: A particularly strong blast or impact sends the ship or vehicle careening off in a new direction. On his next turn, the pilot cannot execute any maneuvers and must make a Piloting check to regain control. The difficulty of this check depends on his current speed.",
+      option5: print("pb", message) + "Tailspin: All firing from the ship or vehicle suffers " + print("blkb", message) + print("blkb", message) + " dice until the end of the pilot’s next turn. All crewmembers are immobilized until the end of the pilot’s next turn.",
+      option6: print("pb", message) + "Component Hit: One component of the attacker’s choice is knocked offline, and is rendered inoperable until the end of the following round. For a list of ship components, see EotE Core Rulebook Table 7-10: Small Ship or Vehicle Components or Table 7-11: Large Ship or Vehicle Components depending on target ship silhouette.",
+      option7: print("pb", message) + print("pb", message) + "Shields Failing: Reduce defense in all defense zones by one point until the Critical Hit is repaired. If the ship or vehicle has no defense, suffer two points of system strain.",
+      option8: print("pb", message) + print("pb", message) + "Navicomputer Failure: The navicomputer (or in the case of a ship without a navicomputer, its R2 unit) fails and the ship cannot make the jump to hyperspace until the Critical Hit is repaired. If the ship or vehicle is without a hyperdrive, the vehicle or ship’s navigation systems fail, leaving it flying or driving blind, unable to tell where it is or where it’s going.",
+      option9: print("pb", message) + print("pb", message) + "Power Fluctuations: The ship or vehicle is beset by random power surges and outages. The pilot cannot voluntarily inflict system strain on the ship (to gain an extra starship maneuver, for example), until this Critical Hit is repaired.",
+      option10: print("pb", message) + print("pb", message) + print("pb", message) + "Shields Down: Decrease defense in affected defense zone to zero, and decrease defense in all other defense zones by one until this Critical Hit is repaired. While the defense of the affected defense zone cannot be restored until the Critical Hit is repaired, defense can be assigned to protect that defense zone from other zones as usual. If the ship or vehicle is without defense, suffer four points of system strain.",
+      option11: print("pb", message) + print("pb", message) + print("pb", message) + "Engine Damaged: The ship or vehicle’s maximum speed is reduced by one point, to a minimum of one, until the Critical Hit is repaired.",
+      option12: print("pb", message) + print("pb", message) + print("pb", message) + "Shield Overload: The ship’s shields completely fail. Decrease the defense of all defense zones to zero. This Critical Hit cannot be repaired until the end of the encounter, and the ship suffers two points of system strain. If the ship or vehicle is without defense, reduce armor by 1 until the Critical Hit is repaired.",
+      option13: print("pb", message) + print("pb", message) + print("pb", message) + "Engines Down: The ship or vehicle’s maximum speed is reduced to zero until the Critical Hit is repaired, although it continues on its present course thanks to momentum. In addition, the ship cannot execute any maneuvers until the Critical Hit is repaired.",
+      option14: print("pb", message) + print("pb", message) + print("pb", message) + "Major System Failure: One component of the attacker’s choice is heavily damaged, and is inoperable until the Critical Hit is repaired. For a list of ship components, see EotE Core Rulebook Table 7-10: Small Ship or Vehicle Components or Table 7-11: Large Ship or Vehicle Components depending on target ship silhouette.",
+      option15: print("pb", message) + print("pb", message) + print("pb", message) + print("pb", message) + "Major Hull Breach: A huge, gaping tear is torn in the ship’s hull and it depressurizes. For ships and vehicles of silhouette 4 and smaller, the entire ship depressurizes in a number of rounds equal to the ship’s silhouette. Ships and vehicles of silhouette 5 and larger tend to be highly compartmentalized and have many safeguards against depressurization. These ships don’t completely depressurize, but parts do (the specifics of which parts depressurize is up to the GM; however each section of the ship or vehicle that does lose air does so in a number of rounds equal to the vehicle’s silhouette). Vehicles and ships operating in an atmosphere can better handle this Critical Hit. However, the huge tear still inflicts penalties, causing the vehicle to suffer the Destabilized Critical Hit instead.",
+      option16: print("pb", message) + print("pb", message) + print("pb", message) + print("pb", message) + "Destabilized: The ship or vehicle’s structural integrity is seriously damaged. Reduce the ship or vehicle’s hull trauma threshold and system strain threshold to half their original values until repaired.",
+      option17: print("pb", message) + print("pb", message) + print("pb", message) + print("pb", message) + "Fire!: Fire rages through the ship. The ship or vehicle immediately takes two points of system strain, and anyone caught in the fire takes damage as discussed on page 214 of the EotE Core Rulebook. A fire can be put out with some quick thinking and appropriate skill, Vigilance and/or Cool checks at the Game Master’s discretion. Once going, a fire takes one round per two of the ship’s silhouette points to put out.",
+      option18: print("pb", message) + print("pb", message) + print("pb", message) + print("pb", message) + "Breaking Up: The vehicle or ship has suffered so much damage that it begins to come apart at its seams, breaking up and disintegrating around the crew. At the end of the following round, the ship is completely destroyed and the surrounding environment is littered with debris. Anyone aboard the ship or vehicle has one round to get to an escape pod, bail out, or dive for the nearest hatch before they are lost.",
       option19: "Vaporized: The ship or vehicle is completely destroyed, consumed in a particularly large and dramatic fireball. Nothing survives."
     };
 
@@ -460,17 +465,17 @@ if (message.content.toLowerCase().startsWith(config.prefix + "destiny")) {
         dark: 0,
         face: "",
       };
-      destinyRoll = rollWhite(1);
+      destinyRoll = rollWhite(1, message);
       destinyBalance[channel].light = +destinyBalance[channel].light + +destinyRoll.light;
       destinyBalance[channel].dark = +destinyBalance[channel].dark + +destinyRoll.dark;
       message.channel.sendMessage(message.author.username + " rolls");
       message.channel.sendMessage(destinyRoll.face);
       destinyRoll.face = "";
       for (var i = 1; i <= destinyRoll.light; i++) {
-        	destinyRoll.face += print.ls;
+        	destinyRoll.face += print("ls", message);
         	}
     	for (var i = 1; i <= destinyRoll.dark; i++) {
-        	destinyRoll.face += print.ds;
+        	destinyRoll.face += print("ds", message);
       		}
 
       message.channel.sendMessage("Adding " + destinyRoll.face + " to the Destiny Pool");
@@ -487,10 +492,10 @@ if (message.content.toLowerCase().startsWith(config.prefix + "destiny")) {
 	function printdestinyBalance() {
       destinyBalance[channel].face = "";
   	for (var i = 1; i <= destinyBalance[channel].light; i++) {
-      	destinyBalance[channel].face += print.ls;
+      	destinyBalance[channel].face += print("ls", message);
       	}
   	for (var i = 1; i <= destinyBalance[channel].dark; i++) {
-      	destinyBalance[channel].face += print.ds;
+      	destinyBalance[channel].face += print("ds", message);
     		}
   	message.channel.sendMessage("Destiny Pool: ")
     if (destinyBalance[channel].face != "") {
@@ -706,12 +711,12 @@ if (message.content.toLowerCase().startsWith(config.prefix + "roll")) {
           abandonShip = true;
           break;
         }
-        rollDice(params[i], diceQty);
+        rollDice(params[i], diceQty, message);
       }
     } else {
       for(var i = 0; i < params[0].length; i++) {
         var diceQty = 1;
-        rollDice(params[0][i], diceQty);
+        rollDice(params[0][i], diceQty, message);
       }
     }
 }
@@ -740,41 +745,41 @@ if (message.content.toLowerCase().startsWith(config.prefix + "roll")) {
     if (diceResult.success > diceResult.failure) {
       var successRemaining = diceResult.success - diceResult.failure;
       cancelledDiceResult.success = successRemaining;
-      response += "   " + print.suc + successRemaining;
+      response += "   " + print("suc", message) + successRemaining;
     } else if (diceResult.success < diceResult.failure) {
       var failureRemaining = diceResult.failure - diceResult.success;
       cancelledDiceResult.failure = failureRemaining;
-      response += "   " + print.fail + failureRemaining;
+      response += "   " + print("fail", message) + failureRemaining;
     }
 
     //cancel Advantage/Threat
     if (diceResult.advantage > diceResult.threat) {
       var advantageRemaining = diceResult.advantage - diceResult.threat;
       cancelledDiceResult.advantage = advantageRemaining;
-      response += "   " + print.adv + advantageRemaining;
+      response += "   " + print("adv", message) + advantageRemaining;
     } else if (diceResult.advantage < diceResult.threat) {
       var threatRemaining = diceResult.threat - diceResult.advantage;
       cancelledDiceResult.threat = threatRemaining;
-      response += "   " + print.thr + threatRemaining;
+      response += "   " + print("thr", message) + threatRemaining;
     }
     //Check for any Triumphs
     if (diceResult.triumph != 0) {
       cancelledDiceResult.triumph = diceResult.triumph;
-      response += "   " + print.tri + diceResult.triumph;
+      response += "   " + print("tri", message) + diceResult.triumph;
     }
     //Check for any Despair
     if (diceResult.despair != 0) {
       cancelledDiceResult.despair = diceResult.despair;
-      response += "   " + print.des + diceResult.despair;
+      response += "   " + print("des", message) + diceResult.despair;
     }
 
     //check for force
     if (diceResult.light != 0) {
-      response += "   " + print.ls + diceResult.light;
+      response += "   " + print("ls", message) + diceResult.light;
     }
 
     if (diceResult.dark != 0) {
-      response += "   " + print.ds + diceResult.dark;
+      response += "   " + print("ds", message) + diceResult.dark;
     }
 
     message.channel.sendMessage(message.author.username + " roll results: " + config.descriptorPrepend + " " + desc);
@@ -833,7 +838,7 @@ function d100(str, message) {
     return (total);
 }
 //uses the current params to roll dice and adds result to diceResult
-function rollDice(color, diceQty) {
+function rollDice(color, diceQty, message) {
     color = color.replace(/\d/g, "");
     switch(color) {
       case "y":
@@ -841,7 +846,7 @@ function rollDice(color, diceQty) {
       //case "p":
         console.log("Rolling " + diceQty + " Proficiency Dice.");
         //Call the function that rolls the yellow dice
-        var yellowResult = rollYellow(diceQty);
+        var yellowResult = rollYellow(diceQty, message);
         //Add the result of all the yellow dice rolls to the standing count
         for (var k in yellowResult) {
           diceResult[k] += yellowResult[k];
@@ -851,7 +856,7 @@ function rollDice(color, diceQty) {
       case "a":
         console.log("Rolling " + diceQty + " Ability Dice.");
         //Call the function that rolls the green dice
-        var greenResult = rollGreen(diceQty);
+        var greenResult = rollGreen(diceQty, message);
         //Add the result of all the green dice rolls to the standing count
         for (var k in greenResult) {
           diceResult[k] += greenResult[k];
@@ -862,7 +867,7 @@ function rollDice(color, diceQty) {
       case "boo":
         console.log("Rolling " + diceQty + " Boost Dice.");
         //Call the function that rolls the blue dice
-        var blueResult = rollBlue(diceQty);
+        var blueResult = rollBlue(diceQty, message);
         //Add the result of all the blue dice rolls to the standing count
         for (var k in blueResult) {
           diceResult[k] += blueResult[k];
@@ -875,7 +880,7 @@ function rollDice(color, diceQty) {
       case "k":
         console.log("Rolling " + diceQty + " Setback Dice.");
         //Call the function that rolls the black dice
-        var blackResult = rollBlack(diceQty);
+        var blackResult = rollBlack(diceQty, message);
         //Add the result of all the black dice rolls to the standing count
         for (var k in blackResult) {
           diceResult[k] += blackResult[k];
@@ -886,7 +891,7 @@ function rollDice(color, diceQty) {
       case "c":
         console.log("Rolling " + diceQty + " Challenge Dice.");
         //Call the function that rolls the red dice
-        var redResult = rollRed(diceQty);
+        var redResult = rollRed(diceQty, message);
         //Add the result of all the red dice rolls to the standing count
         for (var k in redResult) {
           diceResult[k] += redResult[k];
@@ -898,7 +903,7 @@ function rollDice(color, diceQty) {
       case "d":
         console.log("Rolling " + diceQty + " Difficulty Dice.");
         //Call the function that rolls the purple dice
-        var purpleResult = rollPurple(diceQty);
+        var purpleResult = rollPurple(diceQty, message);
         //Add the result of all the purple dice rolls to the standing count
         for (var k in purpleResult) {
           diceResult[k] += purpleResult[k];
@@ -909,7 +914,7 @@ function rollDice(color, diceQty) {
       case "f":
         console.log("Rolling " + diceQty + " Destiny Dice.");
         //Call the function that rolls the white dice
-        var whiteResult = rollWhite(diceQty);
+        var whiteResult = rollWhite(diceQty,message);
         //Add the result of all the white dice rolls to the standing count
         for (var k in whiteResult) {
           diceResult[k] += whiteResult[k];
@@ -920,7 +925,7 @@ function rollDice(color, diceQty) {
   return diceResult;
 }
 
-function rollBlue(diceQty) {
+function rollBlue(diceQty, message) {
   //Blue "Boost" die (d6)
   //1 Blank
   //2 Blank
@@ -949,39 +954,39 @@ function rollBlue(diceQty) {
     switch (roll) {
       case 1:
         console.log(chalk.white.bgBlue("Blank"));
-        diceResult.face += print.bb;
+        diceResult.face += print("bb", message);
         break;
       case 2:
         console.log(chalk.white.bgBlue("Blank"));
-        diceResult.face += print.bb;
+        diceResult.face += print("bb", message);
         break;
       case 3:
         console.log(chalk.white.bgBlue("Success"));
         diceResult.success = diceResult.success + 1;
-        diceResult.face += print.bs;
+        diceResult.face += print("bs", message);
         break;
       case 4:
         console.log(chalk.white.bgBlue("Advantage"));
         diceResult.advantage = diceResult.advantage + 1;
-        diceResult.face += print.ba;
+        diceResult.face += print("ba", message);
         break;
       case 5:
         console.log(chalk.white.bgBlue("Advantage x2"));
         diceResult.advantage = diceResult.advantage + 2;
-        diceResult.face += print.baa;
+        diceResult.face += print("baa", message);
         break;
       case 6:
         console.log(chalk.white.bgBlue("Success + Advantage"));
         diceResult.success = diceResult.success + 1;
         diceResult.advantage = diceResult.advantage + 1;
-        diceResult.face += print.bsa;
+        diceResult.face += print("bsa", message);
         break;
     }
   }
   return diceResult;
 }
 
-function rollGreen(diceQty) {
+function rollGreen(diceQty, message) {
   //Green "Ability" die (d8)
   //1 Blank
   //2 Success
@@ -1012,42 +1017,42 @@ function rollGreen(diceQty) {
     switch (roll) {
       case 1:
         console.log(chalk.white.bgGreen("Blank"));
-        diceResult.face += print.gb;
+        diceResult.face += print("gb", message);
         break;
       case 2:
         console.log(chalk.white.bgGreen("Success"));
-        diceResult.face += print.gs;
+        diceResult.face += print("gs", message);
         diceResult.success = diceResult.success + 1;
         break;
       case 3:
         console.log(chalk.white.bgGreen("Success"));
-        diceResult.face += print.gs;
+        diceResult.face += print("gs", message);
         diceResult.success = diceResult.success + 1;
         break;
       case 4:
         console.log(chalk.white.bgGreen("Advantage"));
-        diceResult.face += print.ga;
+        diceResult.face += print("ga", message);
         diceResult.advantage = diceResult.advantage + 1;
         break;
       case 5:
         console.log(chalk.white.bgGreen("Advantage"));
-        diceResult.face += print.ga;
+        diceResult.face += print("ga", message);
         diceResult.advantage = diceResult.advantage + 1;
         break;
       case 6:
         console.log(chalk.white.bgGreen("Success + Advantage"));
-        diceResult.face += print.gsa;
+        diceResult.face += print("gsa", message);
         diceResult.success = diceResult.success + 1;
         diceResult.advantage = diceResult.advantage + 1;
         break;
       case 7:
         console.log(chalk.white.bgGreen("Advantage x2"));
-        diceResult.face += print.gaa;
+        diceResult.face += print("gaa", message);
         diceResult.advantage = diceResult.advantage + 2;
         break;
       case 8:
         console.log(chalk.white.bgGreen("Success x2"));
-        diceResult.face += print.gss;
+        diceResult.face += print("gss", message);
         diceResult.success = diceResult.success + 2;
         break;
     }
@@ -1055,7 +1060,7 @@ function rollGreen(diceQty) {
   return diceResult;
 }
 //
-function rollYellow(diceQty) {
+function rollYellow(diceQty, message) {
   //Yellow "Proficiency" die (d12)
   //1 Blank
   //2 success
@@ -1090,73 +1095,73 @@ function rollYellow(diceQty) {
     switch (roll) {
       case 1:
         console.log(chalk.black.bgYellow("blank"));
-        diceResult.face += print.yb;
+        diceResult.face += print("yb", message);
         break;
       case 2:
         console.log(chalk.black.bgYellow("Success"));
         diceResult.success = diceResult.success + 1;
-        diceResult.face += print.ys;
+        diceResult.face += print("ys", message);
         break;
       case 3:
         console.log(chalk.black.bgYellow("Success"));
         diceResult.success = diceResult.success + 1;
-        diceResult.face += print.ys;
+        diceResult.face += print("ys", message);
         break;
       case 4:
         console.log(chalk.black.bgYellow("Success x2"));
         diceResult.success = diceResult.success + 2;
-        diceResult.face += print.yss;
+        diceResult.face += print("yss", message);
         break;
       case 5:
         console.log(chalk.black.bgYellow("Success x2"));
         diceResult.success = diceResult.success + 2;
-        diceResult.face += print.yss;
+        diceResult.face += print("yss", message);
         break;
       case 6:
         console.log(chalk.black.bgYellow("Advantage"));
         diceResult.advantage = diceResult.advantage + 1;
-        diceResult.face += print.ya;
+        diceResult.face += print("ya", message);
         break;
       case 7:
         console.log(chalk.black.bgYellow("Success + Advantage"));
         diceResult.success = diceResult.success + 1;
         diceResult.advantage = diceResult.advantage + 1;
-        diceResult.face += print.ysa;
+        diceResult.face += print("ysa", message);
         break;
       case 8:
         console.log(chalk.black.bgYellow("Success + Advantage"));
         diceResult.success = diceResult.success + 1;
         diceResult.advantage = diceResult.advantage + 1;
-        diceResult.face += print.ysa;
+        diceResult.face += print("ysa", message);
         break;
       case 9:
         console.log(chalk.black.bgYellow("Success + Advantage"));
         diceResult.success = diceResult.success + 1;
         diceResult.advantage = diceResult.advantage + 1;
-        diceResult.face += print.ysa;
+        diceResult.face += print("ysa", message);
         break;
       case 10:
         console.log(chalk.black.bgYellow("Advantage x2"));
         diceResult.advantage = diceResult.advantage + 2;
-        diceResult.face += print.yaa;
+        diceResult.face += print("yaa", message);
         break;
       case 11:
         console.log(chalk.black.bgYellow("Advantage x2"));
         diceResult.advantage = diceResult.advantage + 2;
-        diceResult.face += print.yaa;
+        diceResult.face += print("yaa", message);
         break;
       case 12:
         console.log(chalk.black.bgYellow("Triumph"));
         diceResult.triumph = diceResult.triumph + 1;
         diceResult.success = diceResult.success + 1;
-        diceResult.face += print.yt;
+        diceResult.face += print("yt", message);
         break;
     }
   }
   return diceResult;
 }
 //
-function rollBlack(diceQty) {
+function rollBlack(diceQty, message) {
   //Black "Setback" die (d6)
   //1 Blank
   //2 Blank
@@ -1184,38 +1189,38 @@ function rollBlack(diceQty) {
     switch (roll) {
       case 1:
         console.log(chalk.white.bgBlack("Blank"));
-        diceResult.face += print.blkb;
+        diceResult.face += print("blkb", message);
         break;
       case 2:
         console.log(chalk.white.bgBlack("Blank"));
-        diceResult.face += print.blkb;
+        diceResult.face += print("blkb", message);
         break;
       case 3:
         console.log(chalk.white.bgBlack("Failure"));
         diceResult.failure = diceResult.failure + 1;
-        diceResult.face += print.blkf;
+        diceResult.face += print("blkf", message);
         break;
       case 4:
         console.log(chalk.white.bgBlack("Failure"));
         diceResult.failure = diceResult.failure + 1;
-        diceResult.face += print.blkf;
+        diceResult.face += print("blkf", message);
         break;
       case 5:
         console.log(chalk.white.bgBlack("Threat"));
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.blkt;
+        diceResult.face += print("blkt", message);
         break;
       case 6:
         console.log(chalk.white.bgBlack("Threat"));
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.blkt;
+        diceResult.face += print("blkt", message);
         break;
     }
   }
   return diceResult;
 }
 //
-function rollPurple(diceQty) {
+function rollPurple(diceQty, message) {
   //Purple "Difficulty" die (d8)
   //1 Blank
   //2 Failure
@@ -1246,50 +1251,50 @@ function rollPurple(diceQty) {
     switch (roll) {
       case 1:
         console.log(chalk.white.bgMagenta("Blank"));
-        diceResult.face += print.pb;
+        diceResult.face += print("pb", message);
         break;
       case 2:
         console.log(chalk.white.bgMagenta("Failure"));
         diceResult.failure = diceResult.failure + 1;
-        diceResult.face += print.pf;
+        diceResult.face += print("pf", message);
         break;
       case 3:
         console.log(chalk.white.bgMagenta("Failure x2"));
         diceResult.failure = diceResult.failure + 2;
-        diceResult.face += print.pff;
+        diceResult.face += print("pff", message);
         break;
       case 4:
         console.log(chalk.white.bgMagenta("Threat"));
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.pt;
+        diceResult.face += print("pt", message);
         break;
       case 5:
         console.log(chalk.white.bgMagenta("Threat"));
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.pt;
+        diceResult.face += print("pt", message);
         break;
       case 6:
         console.log(chalk.white.bgMagenta("Threat"));
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.pt;
+        diceResult.face += print("pt", message);
         break;
       case 7:
         console.log(chalk.white.bgMagenta("Threat x2"));
         diceResult.threat = diceResult.threat + 2;
-        diceResult.face += print.ptt;
+        diceResult.face += print("ptt", message);
         break;
       case 8:
         console.log(chalk.white.bgMagenta("Failure + Threat"));
         diceResult.failure = diceResult.failure + 1;
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.pft;
+        diceResult.face += print("pft", message);
         break;
     }
   }
   return diceResult;
 }
 //
-function rollRed(diceQty) {
+function rollRed(diceQty, message) {
   //Red "Challenge" die (d12)
   //1 Blank
   //2 Despair
@@ -1325,72 +1330,72 @@ function rollRed(diceQty) {
     switch (roll) {
       case 1:
         console.log(chalk.black.bgRed("Blank"));
-        diceResult.face += print.rb;
+        diceResult.face += print("rb", message);
         break;
       case 2:
         console.log(chalk.black.bgRed("Despair"));
         diceResult.despair = diceResult.despair + 1;
         diceResult.failure = diceResult.failure + 1;
-        diceResult.face += print.rd;
+        diceResult.face += print("rd", message);
         break;
       case 3:
         console.log(chalk.black.bgRed("Failure"));
         diceResult.failure = diceResult.failure + 1;
-        diceResult.face += print.rf;
+        diceResult.face += print("rf", message);
         break;
       case 4:
         console.log(chalk.black.bgRed("Failure"));
         diceResult.failure = diceResult.failure + 1;
-        diceResult.face += print.rf;
+        diceResult.face += print("rf", message);
         break;
       case 5:
         console.log(chalk.black.bgRed("Threat"));
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.rt;
+        diceResult.face += print("rt", message);
         break;
       case 6:
         console.log(chalk.black.bgRed("Threat"));
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.rt;
+        diceResult.face += print("rt", message);
         break;
       case 7:
         console.log(chalk.black.bgRed("Failure x2"));
         diceResult.failure = diceResult.failure + 2;
-        diceResult.face += print.rff;
+        diceResult.face += print("rff", message);
         break;
       case 8:
         console.log(chalk.black.bgRed("Failure x2"));
         diceResult.failure = diceResult.failure + 2;
-        diceResult.face += print.rff;
+        diceResult.face += print("rff", message);
         break;
       case 9:
         console.log(chalk.black.bgRed("Threat x2"));
         diceResult.threat = diceResult.threat + 2;
-        diceResult.face += print.rtt;
+        diceResult.face += print("rtt", message);
         break;
       case 10:
         console.log(chalk.black.bgRed("Threat x2"));
         diceResult.threat = diceResult.threat + 2;
-        diceResult.face += print.rtt;
+        diceResult.face += print("rtt", message);
         break;
       case 11:
         console.log(chalk.black.bgRed("Failure + Threat"));
         diceResult.failure = diceResult.failure + 1;
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.rft;
+        diceResult.face += print("rft", message);
         break;
       case 12:
         console.log(chalk.black.bgRed("Failure + Threat"));
         diceResult.failure = diceResult.failure + 1;
         diceResult.threat = diceResult.threat + 1;
-        diceResult.face += print.rft;
+        diceResult.face += print("rft", message);
         break;
     }
   }
   return diceResult;
 }
 //
-function rollWhite(diceQty) {
+function rollWhite(diceQty, message) {
   //White "Force" die (d12)
   //1 Light
   //2 Light
@@ -1427,62 +1432,62 @@ function rollWhite(diceQty) {
       case 1:
         console.log(chalk.black.bgWhite("Light"));
         diceResult.light = diceResult.light + 1;
-        diceResult.face += print.wl;
+        diceResult.face += print("wl", message);
         break;
       case 2:
         console.log(chalk.black.bgWhite("Light"));
         diceResult.light = diceResult.light + 1;
-        diceResult.face += print.wl;
+        diceResult.face += print("wl", message);
         break;
       case 3:
         console.log(chalk.black.bgWhite("Light x2"));
         diceResult.light = diceResult.light + 2;
-        diceResult.face += print.wll;
+        diceResult.face += print("wll", message);
         break;
       case 4:
         console.log(chalk.black.bgWhite("Light x2"));
         diceResult.light = diceResult.light + 2;
-        diceResult.face += print.wll;
+        diceResult.face += print("wll", message);
         break;
       case 5:
         console.log(chalk.black.bgWhite("Light x2"));
         diceResult.light = diceResult.light + 2;
-        diceResult.face += print.wll;
+        diceResult.face += print("wll", message);
         break;
       case 6:
         console.log(chalk.black.bgWhite("Dark"));
         diceResult.dark = diceResult.dark + 1;
-        diceResult.face += print.wd;
+        diceResult.face += print("wd", message);
         break;
       case 7:
         console.log(chalk.black.bgWhite("Dark"));
         diceResult.dark = diceResult.dark + 1;
-        diceResult.face += print.wd;
+        diceResult.face += print("wd", message);
         break;
       case 8:
         console.log(chalk.black.bgWhite("Dark"));
         diceResult.dark = diceResult.dark + 1;
-        diceResult.face += print.wd;
+        diceResult.face += print("wd", message);
         break;
       case 9:
         console.log(chalk.black.bgWhite("Dark"));
         diceResult.dark = diceResult.dark + 1;
-        diceResult.face += print.wd;
+        diceResult.face += print("wd", message);
         break;
       case 10:
         console.log(chalk.black.bgWhite("Dark"));
         diceResult.dark = diceResult.dark + 1;
-        diceResult.face += print.wd;
+        diceResult.face += print("wd", message);
         break;
       case 11:
         console.log(chalk.black.bgWhite("Dark"));
         diceResult.dark = diceResult.dark + 1;
-        diceResult.face += print.wd;
+        diceResult.face += print("wd", message);
         break;
       case 12:
         console.log(chalk.black.bgWhite("Dark x2"));
         diceResult.dark = diceResult.dark + 2;
-        diceResult.face += print.wdd;
+        diceResult.face += print("wdd", message);
         break;
     }
   }
