@@ -128,10 +128,6 @@ To run the bot, Just execute the file "EotE Dice Roller.lnk". You can copy/move 
 
   2. Set "emoji": true in config.json
 
-  3. Start your bot
-    1.  if any emoji don't work type "\:emoji:" into your channel for every emoji that doesn't work. (ie \:adv:  \:tri:)
-        The server will output <:adv:294221000277491714> <:tri:294221000713830401>
-    2.  Make sure those output values match the values in printValues.json
 
 #Amazon EC2 install
 
