@@ -1,6 +1,6 @@
 {
   "name": "edge-of-the-empire-dice-roller",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Dice roller for the star wars edge of the empire rpg",
   "main": "bot.js",
   "dependencies": {

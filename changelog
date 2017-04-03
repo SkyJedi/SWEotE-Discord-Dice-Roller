@@ -1,7 +1,13 @@
+version 1.4.4
+  - module-ized the whole monty
+
+version 1.4.3
+  - added background emojiID lookup
+
 version 1.4.2
- -  added/fixed !help
+  -  added/fixed !help
 
 version 1.4.1
- -  Made a Changelog
- -  Fixed the one word error in the descriptor
- -  added !ver command
+  -  Made a Changelog
+  -  Fixed the one word error in the descriptor
+  -  added !ver command
