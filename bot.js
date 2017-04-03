@@ -116,11 +116,6 @@ bot.on("message", message => {
 
 //************************COMMANDS START HERE************************
 
-//test command
-if (message.content.toLowerCase().startsWith(config.prefix + "test")) {
-  var emoji = print("adv", message);
-  message.channel.sendMessage(emoji);
-}
 //Ver command
 if (message.content.toLowerCase().startsWith(config.prefix + "ver")) {
   message.channel.sendMessage(bot.user.username + ": version: " + version);
