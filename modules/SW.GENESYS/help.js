@@ -137,6 +137,7 @@ function help(bot, message, topic, prefix) {
 				.addField(`${prefix}roll`, 'rolls any combination of SWRPG/GENESYS dice.')
 				.addField(`${prefix}reroll`, 'modifies the previous roll.')
 				.addField(`${prefix}destiny`, 'manages the destiny balance.')
+				.addField(`${prefix}story`, 'manages the story balance.')
 				.addField(`${prefix}crit`, 'rolls and displays the critical hit.')
 				.addField(`${prefix}shipcrit`, 'rolls and displays the ship critical hit.')
 				.addField(`${prefix}char`, 'simple character stat manager.')
