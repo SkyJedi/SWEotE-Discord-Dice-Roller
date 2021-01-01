@@ -12,8 +12,8 @@ const help = (client, message, topic, prefix) => {
                  .addField(`${prefix}destiny roll`, `Rolls a force die and adds result to the destiny pool.`)
                  .addField(`${prefix}destiny l/light`, `Use light side point.`)
                  .addField(`${prefix}destiny d/dark`, `Use dark side point.`)
-                 .addField(`${prefix}destiny set #l #n`, `Sets destiny pool.`)
-                 .addField(`${prefix}destiny set llnn`, `Sets destiny pool`)
+                 .addField(`${prefix}destiny set #l #d`, `Sets destiny pool.`)
+                 .addField(`${prefix}destiny set lldd`, `Sets destiny pool`)
                  .addField(`${prefix}destiny reset`, `Resets the destiny pool`);
             break;
         case 'story':
